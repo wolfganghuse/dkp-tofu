@@ -14,9 +14,9 @@ output "controlplane" {
 
 output "workers" {
   value = {
-    control_plane = {
+    worker = {
       cluster_name         = var.cluster_name
-      private_address      = nutanix_virtual_machine.control_plane.*.nic_list.0.ip_endpoint_list.0.ip
+      private_address      = nutanix_virtual_machine.worker.*.nic_list.0.ip_endpoint_list.0.ip
       ssh_port             = var.ssh_port
       ssh_private_key_file = var.ssh_private_key_file
       ssh_user             = var.ssh_username
