@@ -53,6 +53,12 @@ resource "nutanix_virtual_machine" "worker" {
     subnet_uuid = data.nutanix_subnet.subnet.metadata.uuid
   }
 
+  gpu_list {
+    device_id = 1150
+    mode = "VIRTUAL"
+    vendor = "NVIDIA"
+  }
+
   disk_list {
     disk_size_mib = var.worker_disk_size
 
@@ -67,4 +73,14 @@ resource "nutanix_virtual_machine" "worker" {
     ssh_key      = file(var.ssh_public_key_file)
   }))
 
+}
+
+resource "local_file" "preprovisoned_inventory" {
+  content      = templatefile("preprovisoned_inventory.yaml.tftpl", {
+    CLUSTER_NAME = var.cluster_name
+    SSH_USER = var.ssh_username
+    WORKER_NODES = [for vm in nutanix_virtual_machine.worker : vm.nic_list[0].ip_endpoint_list[0].ip]
+    CP_NODES = [for vm in nutanix_virtual_machine.control_plane : vm.nic_list[0].ip_endpoint_list[0].ip]
+  })
+  filename = "preprovisioned_inventory.yaml"
 }
