@@ -61,7 +61,7 @@ variable "image_name" {
 }
 
 variable "control_plane_vcpus" {
-  default     = 2
+  default     = 1
   description = "Number of vCPUs per socket for control plane nodes"
   type        = number
 }
@@ -85,7 +85,7 @@ variable "control_plane_disk_size" {
 }
 
 variable "worker_vcpus" {
-  default     = 2
+  default     = 1
   description = "Number of vCPUs per socket for worker nodes"
   type        = number
 }
