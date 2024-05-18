@@ -4,3 +4,5 @@ sudo: ALL=(ALL) NOPASSWD:ALL
 ssh_pwauth: false
 ssh_authorized_keys:
   - "${ssh_key}"
+runcmd:
+- echo $(hostname -i | awk {'print $1'} && hostname) >> /etc/hosts

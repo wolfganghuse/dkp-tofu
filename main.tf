@@ -54,8 +54,10 @@ resource "nutanix_virtual_machine" "worker" {
   }
 
   gpu_list {
-    device_id = 1150
-    mode = "VIRTUAL"
+    #device_id = 1150
+    device_id = 9913
+    #mode = "VIRTUAL"
+    mode = "PASSTHROUGH_COMPUTE"
     vendor = "NVIDIA"
   }
 
