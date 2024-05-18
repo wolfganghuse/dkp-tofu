@@ -54,10 +54,8 @@ resource "nutanix_virtual_machine" "worker" {
   }
 
   gpu_list {
-    #device_id = 1150
-    #device_id = 9913
+    device_id = 1183 #NVIDIA_L40S-16C
     mode = "VIRTUAL"
-    name = "NVIDIA_L40S-16C"
     #mode = "PASSTHROUGH_COMPUTE"
     vendor = "NVIDIA"
   }
