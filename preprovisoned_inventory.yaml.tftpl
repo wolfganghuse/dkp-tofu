@@ -45,3 +45,19 @@ spec:
     privateKeyRef:
       name: ${CLUSTER_NAME}-ssh-key
       namespace: default
+---
+apiVersion: infrastructure.cluster.konvoy.d2iq.io/v1alpha1
+kind: PreprovisionedInventory
+metadata:
+  name: ${CLUSTER_NAME}-gpu-nodepool
+spec:
+  hosts:
+%{ for ip in GPU_WORKER_NODES ~}
+    - address: ${ip}
+%{ endfor ~}
+  sshConfig:
+    port: 22
+    user: ${SSH_USER}
+    privateKeyRef:
+      name: ${CLUSTER_NAME}-ssh-key
+      namespace: default 

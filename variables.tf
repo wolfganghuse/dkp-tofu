@@ -126,3 +126,51 @@ variable "nutanix_endpoint" {
   description = "Prism Central endpoing"
   type        = string
 }
+
+
+variable "gpu_worker_vm_count" {
+  description = "Number of GPU worker VMs to create. Set to 0 to disable."
+  default     = 0
+}
+
+variable "gpu_worker_sockets" {
+  default     = 8
+  description = "Number of sockets for worker nodes"
+  type        = number
+}
+
+variable "gpu_worker_memory_size" {
+  default     = 65536
+  description = "Memory size, in Mib, for worker nodes"
+  type        = number
+}
+
+variable "gpu_worker_disk_size" {
+  default     = 307200
+  description = "Disk size size, in Gb, for worker nodes"
+  type        = number
+}
+
+variable "gpu_worker_vcpus" {
+  default     = 1
+  description = "Number of vCPUs per socket for gpu nodes"
+  type        = number
+}
+
+variable "gpu_vendor" {
+  default     = "NVIDIA"
+  description = "Type of GPU to attach to the VM."
+}
+variable "gpu_count" {
+  description = "Number of GPUs to attach to each VM."
+  default     = 1
+}
+variable "gpu_device" {
+  default     = "9913"
+  description = "1183 NVIDIA_L40S-16C or 9913 L40S"
+}
+
+variable "gpu_mode" {
+  default     = "PASSTHROUGH_COMPUTE"
+  description = "PASSTHROUGH_COMPUTE or VIRTUAL"
+}
