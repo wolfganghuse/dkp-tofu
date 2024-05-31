@@ -50,6 +50,7 @@ apiVersion: infrastructure.cluster.konvoy.d2iq.io/v1alpha1
 kind: PreprovisionedInventory
 metadata:
   name: ${CLUSTER_NAME}-gpu-nodepool
+  namespace: default
 spec:
   hosts:
 %{ for ip in GPU_WORKER_NODES ~}
