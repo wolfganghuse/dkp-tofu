@@ -6,3 +6,5 @@ ssh_authorized_keys:
   - "${ssh_key}"
 runcmd:
 - echo $(hostname -i | awk {'print $1'} && hostname) >> /etc/hosts
+- systemctl enable --now iscsid
+- apt install -y nfs-common
