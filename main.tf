@@ -11,12 +11,17 @@ data "nutanix_image" "image" {
   image_name = var.image_name
 }
 
+
 # Control Plane VM Resource
 resource "nutanix_virtual_machine" "control_plane" {
   count        = var.control_plane_vm_count
   name         = "${var.cluster_name}-cp-${count.index}"
   cluster_uuid = data.nutanix_cluster.cluster.metadata.uuid
 
+  project_reference = {
+    kind = "project"
+    name = var.project
+  }
   num_vcpus_per_socket = var.control_plane_vcpus
   num_sockets          = var.control_plane_sockets
   memory_size_mib      = var.control_plane_memory_size
@@ -46,6 +51,12 @@ resource "nutanix_virtual_machine" "worker" {
   name         = "${var.cluster_name}-worker-${count.index}"
   cluster_uuid = data.nutanix_cluster.cluster.metadata.uuid
 
+
+  project_reference = {
+    kind = "project"
+    name = var.project
+  }
+
   num_vcpus_per_socket = var.worker_vcpus
   num_sockets          = var.worker_sockets
   memory_size_mib      = var.worker_memory_size
@@ -74,6 +85,12 @@ resource "nutanix_virtual_machine" "gpu_worker" {
   count        = var.gpu_worker_vm_count
   name         = "${var.cluster_name}-gpu-worker-${count.index}"
   cluster_uuid = data.nutanix_cluster.cluster.metadata.uuid
+
+
+  project_reference = {
+    kind = "project"
+    name = var.project
+  }
 
   num_vcpus_per_socket = var.gpu_worker_vcpus
   num_sockets          = var.gpu_worker_sockets

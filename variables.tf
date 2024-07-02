@@ -174,3 +174,7 @@ variable "gpu_mode" {
   default     = "PASSTHROUGH_COMPUTE"
   description = "PASSTHROUGH_COMPUTE or VIRTUAL"
 }
+
+variable "project" {
+  type = string
+}
