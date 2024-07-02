@@ -20,7 +20,7 @@ resource "nutanix_virtual_machine" "control_plane" {
 
   project_reference = {
     kind = "project"
-    name = var.project
+    uuid = var.project
   }
   num_vcpus_per_socket = var.control_plane_vcpus
   num_sockets          = var.control_plane_sockets
@@ -54,7 +54,7 @@ resource "nutanix_virtual_machine" "worker" {
 
   project_reference = {
     kind = "project"
-    name = var.project
+    uuid = var.project
   }
 
   num_vcpus_per_socket = var.worker_vcpus
@@ -89,7 +89,7 @@ resource "nutanix_virtual_machine" "gpu_worker" {
 
   project_reference = {
     kind = "project"
-    name = var.project
+    uuid = var.project
   }
 
   num_vcpus_per_socket = var.gpu_worker_vcpus
