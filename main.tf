@@ -119,7 +119,7 @@ resource "nutanix_virtual_machine" "gpu_worker" {
   }
   
   dynamic "gpu_list" {
-    for_each = var.gpu_count > 0 ? [1] : []
+    for_each = var.gpu_count > 0 ? [for i in range(var.gpu_count) : i] : []
     content {
       mode     = var.gpu_mode
       vendor    = var.gpu_vendor
